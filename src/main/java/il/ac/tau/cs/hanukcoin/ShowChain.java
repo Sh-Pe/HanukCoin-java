@@ -67,7 +67,6 @@ public class ShowChain {
             try {
                 sendRequest(1, dataOutput);
                 parseMessage(dataInput);
-
             } catch (IOException e) {
                 throw new RuntimeException("send/recieve error", e);
             }

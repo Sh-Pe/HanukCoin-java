@@ -3,6 +3,7 @@ package il.ac.tau.cs.hanukcoin;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class HanukCoinUtils {
@@ -176,6 +177,27 @@ public class HanukCoinUtils {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Checks if a given chain of clocks (aka "BlockChain") is valid
+	 * 
+	 * @param receivedBlocks
+	 * @return validation
+	 */
+	public static boolean checkBlockChainValidation(List<Block> receivedBlocks) {
+		if (receivedBlocks.isEmpty()) {
+			return false;
+		}
+		Block prev = receivedBlocks.get(0);
+		receivedBlocks.remove(0);
+		for (Block currentBlock : receivedBlocks) {
+			if (!currentBlock.checkValidNext(prev).equals(Block.BlockError.OK)) {
+				return false;
+			}
+			prev = currentBlock;
+		}
+		return true;
 	}
 
 	public static void main(String[] args) {
