@@ -42,7 +42,7 @@ public class ShowChain {
             n.name = readLenStr(dis);
             n.host = readLenStr(dis);
             n.port = dis.readShort();
-            n.lastSeenTS =dis.readInt();
+            n.lastSeenTS = dis.readInt();
             // TODO(students): update extra fields
             return n;
         }

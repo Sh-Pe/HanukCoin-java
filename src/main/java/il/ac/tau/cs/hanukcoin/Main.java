@@ -19,6 +19,5 @@ public class Main {
         }
         System.err.println(blocks);
         System.err.println(HanukCoinUtils.checkBlockChainValidation(blocks));
-
     }
 }
