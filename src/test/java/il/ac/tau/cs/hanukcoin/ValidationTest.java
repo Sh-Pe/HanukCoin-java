@@ -12,6 +12,8 @@ public class ValidationTest extends TestCase {
 		blocks.add(HanukCoinUtils.createBlock0forTestStage());
 		for (int i = 0; i < 3; i++) {
 			Block previous = blocks.get(i);
+			Thread.sleep(200);
+//			System.out.println("" + blocks + i);
 			blocks.add(HanukCoinUtils.mineCoinAttempt(
 				// alternate between 2 wallets
 				(i + 1) % 2,
