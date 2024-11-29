@@ -3,6 +3,8 @@ package il.ac.tau.cs.hanukcoin;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class HanukCoinUtils {
@@ -176,6 +178,25 @@ public class HanukCoinUtils {
 			}
 		}
 		return null;
+	}
+
+	public static boolean checkBlockChainValidation(List<Block> receivedBlocks) {
+		if (receivedBlocks.isEmpty()) {
+			return false;
+		}
+		Block prev = receivedBlocks.get(0);
+		if (Arrays.equals(createBlock0forTestStage().getBytes(), prev.getBytes())) {
+			System.out.println("first block is problematic");
+			return false;
+		}
+		receivedBlocks.remove(0);
+		for (Block currentBlock : receivedBlocks) {
+			if (!currentBlock.checkValidNext(prev).equals(Block.BlockError.OK)) {
+				return false;
+			}
+			prev = currentBlock;
+		};
+		return true;
 	}
 
 	public static void main(String[] args) {
